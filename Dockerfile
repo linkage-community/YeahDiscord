@@ -10,13 +10,13 @@ RUN apt-get -qq update && apt-get install -y \
   && rm -r /var/lib/apt/lists/*
 WORKDIR /app
 COPY . .
-RUN swift build -c release && ln -s `swift build -c release --show-bin-path` /build/bin
+RUN swift build -c release && ln -s `swift build -c release --show-bin-path` /app/bin
 
 # Production image
 FROM swift:5.1.3-slim
 ARG env
 WORKDIR /app
-COPY --from=builder /build/bin ./bin
+COPY --from=builder /app/bin ./bin
 COPY --from=builder /app/Public ./Public
 COPY --from=builder /app/Resources ./Resources
 ENV ENVIRONMENT=$env
