@@ -1,0 +1,11 @@
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+
+jobs:
+  docker:
+    runs-on: Ubuntu-latest
+    steps:
+      - run: docker build .
