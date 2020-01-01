@@ -8,4 +8,5 @@ jobs:
   docker:
     runs-on: Ubuntu-latest
     steps:
+      - uses: actions/checkout@v1
       - run: docker build .
